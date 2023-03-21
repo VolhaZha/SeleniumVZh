@@ -1,6 +1,7 @@
 package jUnit;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import shop.Cart;
 import shop.RealItem;
@@ -8,28 +9,30 @@ import shop.RealItem;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCart {
-        Cart cart = new Cart("TestCart");
-        RealItem car = new RealItem();
+    private Cart cart;
+    private RealItem car;
+    @BeforeEach
+    public void setParams() {
+        cart = new Cart("TestCart");
+        car = new RealItem();
+        car.setName("Audi");
+        car.setPrice(10);
+        car.setWeight(50);
+    }
 
     @Test
     public void testGetCartName() {
-        Assert.assertEquals("Cart Name can not be obtained","TestCart", cart.getCartName());
+        Assertions.assertEquals("TestCart", cart.getCartName(), "Cart Name can not be obtained");
     }
 
     @Test
     public void testAddRealItem() {
-        car.setName("Audi");
-        car.setPrice(10);
-        car.setWeight(50);
         cart.addRealItem(car);
         assertEquals(12, cart.getTotalPrice(), 0.001, "Expected value does not match actual value");
     }
 
     @Test
     public void testDeleteRealItem() {
-        car.setName("Audi");
-        car.setPrice(10);
-        car.setWeight(50);
         cart.deleteRealItem(car);
         assertEquals(0, cart.getTotalPrice(), 0.001, "Expected value does not match actual value");
     }
