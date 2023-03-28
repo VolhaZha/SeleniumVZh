@@ -7,11 +7,11 @@ import shop.RealItem;
 import java.io.IOException;
 
 public class TestRealItem {
-    RealItem realItem = new RealItem();
+    private static final RealItem REAL_ITEM = new RealItem();
 
     @Test
     public void testGetWeight() throws IOException {
-        realItem.setWeight(12);
-        Assert.assertEquals(realItem.getWeight(),12,0.001, "Expected value does not match actual value");
+        REAL_ITEM.setWeight(12);
+        Assert.assertEquals(REAL_ITEM.getWeight(),12,0.001, "Expected value does not match actual value");
     }
 }

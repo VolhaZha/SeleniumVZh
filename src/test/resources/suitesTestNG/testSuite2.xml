@@ -3,7 +3,7 @@
 <suite name = "Cycle2">
     <test name = "Test2">
         <classes>
-            <class name="testNG.TestCart1">
+            <class name="testNG.TestCart">
                 <methods>
                     <exclude name="testGet.*"/>
                 </methods>

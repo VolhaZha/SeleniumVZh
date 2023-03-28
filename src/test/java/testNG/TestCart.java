@@ -6,12 +6,14 @@ import org.testng.annotations.Test;
 import shop.Cart;
 import shop.RealItem;
 
-public class TestCart1 {
-    private Cart cart;
+public class TestCart {
+   // private Cart cart;
+    private static final Cart CART = new Cart("TestCart");
+
     private RealItem car;
     @BeforeMethod
     public void setParams() {
-        cart = new Cart("TestCart");
+     //   cart = new Cart("TestCart");
         car = new RealItem();
         car.setName("Audi");
         car.setPrice(10);
@@ -20,18 +22,18 @@ public class TestCart1 {
 
     @Test (priority = 1)
     public void testGetCartName() {
-        Assert.assertEquals(cart.getCartName(),"TestCart", "Cart Name can not be obtained");
+        Assert.assertEquals(CART.getCartName(),"TestCart", "Cart Name can not be obtained");
     }
 
     @Test (priority = 2)
     public void testAddRealItem() {
-        cart.addRealItem(car);
-        Assert.assertEquals(cart.getTotalPrice(),12,  0.001, "Expected value does not match actual value");
+        CART.addRealItem(car);
+        Assert.assertEquals(CART.getTotalPrice(),12,  0.001, "Expected value does not match actual value");
     }
 
     @Test (priority = 3)
     public void testDeleteRealItem() {
-        cart.deleteRealItem(car);
-        Assert.assertEquals(cart.getTotalPrice(),0,  0.001, "Expected value does not match actual value");
+        CART.deleteRealItem(car);
+        Assert.assertEquals(CART.getTotalPrice(),0,  0.001, "Expected value does not match actual value");
     }
 }

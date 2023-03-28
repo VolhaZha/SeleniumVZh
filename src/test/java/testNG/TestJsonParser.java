@@ -36,7 +36,7 @@ public class TestJsonParser {
 
         jsonParser.writeToFile(expectedCart);
 
-        File file = new File("src\\main\\resources\\TestCart.json");
+        File file = new File("src/main/resources/TestCart.json");
         Assert.assertTrue(file.exists(), "File does not exist");
 
     }
@@ -45,7 +45,7 @@ public class TestJsonParser {
     public void testReadCartNameFromFile() throws IOException {
         expectedCart = new Cart("TestCart");
 
-        File file = new File("src\\main\\resources\\TestCart.json");
+        File file = new File("src/main/resources/TestCart.json");
         actualCart = jsonParser.readFromFile(file);
 
         Assert.assertEquals(actualCart.getCartName(),"TestCart",  "Cart Name can not be obtained");
@@ -53,7 +53,7 @@ public class TestJsonParser {
 
     @Test (priority = 2, expectedExceptions = NoSuchFileException.class)
     public void testFileDoesNotExist() {
-        File file = new File("src\\main\\resources\\NoFile");
+        File file = new File("src/main/resources/NoFile");
         expectedCart = new Cart("TestCart");
         jsonParser.readFromFile(file);
     }
@@ -63,7 +63,7 @@ public class TestJsonParser {
     @Test (priority = 3)
     public void testOtherExceptions() throws IOException {
         //broken file
-        File file = new File("src\\main\\resources\\broken.json");
+        File file = new File("src/main/resources/broken.json");
         expectedCart = new Cart("broken");
         jsonParser.writeToFile(expectedCart);
 
@@ -77,19 +77,19 @@ public class TestJsonParser {
 
         //empty file
         Assert.assertThrows(NullPointerException.class, () -> {
-            Cart cart = jsonParser.readFromFile(new File("src\\main\\resources\\emptyFile.json"));
+            Cart cart = jsonParser.readFromFile(new File("src/main/resources/emptyFile.json"));
             Assert.assertNull(cart.getCartName(), "NullPointerException was expected");
         });
 
         //no Real Item
         Assert.assertThrows(NullPointerException.class, () -> {
-            Cart cart = jsonParser.readFromFile(new File("src\\main\\resources\\noRealItem.json"));
+            Cart cart = jsonParser.readFromFile(new File("src/main/resources/noRealItem.json"));
             cart.showItems();
         });
 
         //no Virtual Item
         Assert.assertThrows(NullPointerException.class, () -> {
-            Cart cart = jsonParser.readFromFile(new File("src\\main\\resources\\noVirtualItem.json"));
+            Cart cart = jsonParser.readFromFile(new File("src/main/resources/noVirtualItem.json"));
             cart.showItems();
         });
     }

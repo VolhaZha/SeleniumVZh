@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import shop.Cart;
 import shop.RealItem;
 
-public class TestCart2 {
+public class TestCartParams {
     private Cart cart;
     private RealItem car;
     @BeforeMethod

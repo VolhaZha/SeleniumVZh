@@ -7,7 +7,7 @@
         <parameter name="carPrice" value="10"/>
         <parameter name="carWeight" value="50"/>
         <classes>
-            <class name = "testNG.TestCart2" />
+            <class name = "testNG.TestCartParams" />
             <class name = "testNG.TestRealItem" />
         </classes>
     </test>

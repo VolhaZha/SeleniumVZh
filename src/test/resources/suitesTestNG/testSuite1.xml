@@ -4,7 +4,7 @@
     <test name = "Test1">
         <classes>
             <class name = "testNG.TestJsonParser" />
-            <class name = "testNG.TestCart1" />
+            <class name = "testNG.TestCart" />
         </classes>
     </test>
 </suite>
