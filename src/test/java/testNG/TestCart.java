@@ -7,13 +7,11 @@ import shop.Cart;
 import shop.RealItem;
 
 public class TestCart {
-   // private Cart cart;
-    private static final Cart CART = new Cart("TestCart");
-
+    private Cart cart;
     private RealItem car;
     @BeforeMethod
     public void setParams() {
-     //   cart = new Cart("TestCart");
+        cart = new Cart("TestCart");
         car = new RealItem();
         car.setName("Audi");
         car.setPrice(10);
@@ -22,18 +20,19 @@ public class TestCart {
 
     @Test (priority = 1)
     public void testGetCartName() {
-        Assert.assertEquals(CART.getCartName(),"TestCart", "Cart Name can not be obtained");
+        Assert.assertEquals(cart.getCartName(),"TestCart", "Cart Name can not be obtained");
     }
 
     @Test (priority = 2)
     public void testAddRealItem() {
-        CART.addRealItem(car);
-        Assert.assertEquals(CART.getTotalPrice(),12,  0.001, "Expected value does not match actual value");
+        cart.addRealItem(car);
+        Assert.assertEquals(cart.getTotalPrice(),12,  0.001, "Expected value does not match actual value");
     }
 
     @Test (priority = 3)
     public void testDeleteRealItem() {
-        CART.deleteRealItem(car);
-        Assert.assertEquals(CART.getTotalPrice(),0,  0.001, "Expected value does not match actual value");
+        cart.addRealItem(car);
+        cart.deleteRealItem(car);
+        Assert.assertEquals(cart.getTotalPrice(),0,  0.001, "Expected value does not match actual value");
     }
 }

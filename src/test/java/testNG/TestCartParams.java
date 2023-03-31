@@ -33,6 +33,7 @@ public class TestCartParams {
 
     @Test (priority = 3)
     public void testDeleteRealItem() {
+        cart.addRealItem(car);
         cart.deleteRealItem(car);
         Assert.assertEquals(cart.getTotalPrice(),0,  0.001, "Expected value does not match actual value");
     }
