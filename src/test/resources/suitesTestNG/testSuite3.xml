@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name = "Cycle3">
+    <test name = "Test3">
+        <parameter name="cartName" value="TestCart"/>
+        <parameter name="carName" value="Audi"/>
+        <parameter name="carPrice" value="10"/>
+        <parameter name="carWeight" value="50"/>
+        <classes>
+            <class name = "testNG.TestCartParams" />
+            <class name = "testNG.TestRealItem" />
+        </classes>
+    </test>
+</suite>
