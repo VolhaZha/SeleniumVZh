@@ -27,20 +27,20 @@ public class TestLogIn {
 
         driver.get("https://passport.yandex.com/auth?retpath=https%3A%2F%2Fpassport.yandex.com%2F&noreturn=1");
 
-        WebElement userName=driver.findElement(By.name(Locators.NAME));
-        WebElement logInButton1=driver.findElement(By.id(Locators.ID));
+        WebElement userName=driver.findElement(By.name(Locators.INPUT_NAME));
+        WebElement logInButton1=driver.findElement(By.id(Locators.ID_LINK_TO_SIGN_IN));
 
         userName.sendKeys("ooozoz");
         logInButton1.click();
 
-        WebElement password=driver.findElement(By.xpath(Locators.XPATH));
+        WebElement password=driver.findElement(By.xpath(Locators.PASS_XPATH));
         password.sendKeys("1234567OZ!");
-        WebElement logInButton2=driver.findElement(By.cssSelector(Locators.CSS_SELECTOR));
+        WebElement logInButton2=driver.findElement(By.cssSelector(Locators.CSS_SELECTOR_TO_SIGN_IN));
         logInButton2.click();
 
         String title = driver.getTitle();
         Assert.assertEquals("Authorization", title);
 
-        driver.quit();
+        driver.close();
     }
 }
