@@ -1,4 +1,4 @@
-package seleniumWebDriver;
+package seleniumWebDriverTask30;
 
 public class Locators {
 
