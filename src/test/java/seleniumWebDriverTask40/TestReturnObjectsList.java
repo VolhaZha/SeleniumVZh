@@ -7,45 +7,45 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.BeforeTest;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TestScript9 {
+public class TestReturnObjectsList {
     public static WebDriver driver;
     public ChromeOptions options;
 
-    @BeforeTest
+    @BeforeMethod
     public void launchBrowser() {
         options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+
     }
 
     @Test(priority = 1)
     public void waitForUser() throws InterruptedException {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+        driver.get(ParametersReturnObjectsList.URL);
 
-        driver.get(ParametersScript9.URL);
-
-        WebElement listNumberOption = driver.findElement(ParametersScript9.LIST_OPTION10);
+        WebElement listNumberOption = driver.findElement(ParametersReturnObjectsList.LIST_OPTION10);
         listNumberOption.click();
 
         Thread.sleep(1000);
 
         List<CustomObject> customObjectsList = new ArrayList<>();
-        Boolean isButtonDisabled = driver.findElement(ParametersScript9.NEXTBUTTON).getAttribute("class").contains("disabled");
+        Boolean isButtonDisabled = driver.findElement(ParametersReturnObjectsList.NEXTBUTTON).getAttribute("class").contains("disabled");
         while (!isButtonDisabled) {
-            System.out.println();
-            List<WebElement> rows = driver.findElements(ParametersScript9.ROWS);
+            List<WebElement> rows = driver.findElements(ParametersReturnObjectsList.ROWS);
             WebElement nextButton;
-            nextButton = driver.findElement(ParametersScript9.NEXTBUTTON);
+            nextButton = driver.findElement(ParametersReturnObjectsList.NEXTBUTTON);
 
                 for (WebElement row : rows) {
-                    List<WebElement> cells = row.findElements(ParametersScript9.CELLS);
+                    List<WebElement> cells = row.findElements(ParametersReturnObjectsList.CELLS);
                     String name = cells.get(0).getText();
                     String position = cells.get(1).getText();
                     String office = cells.get(2).getText();
@@ -60,14 +60,19 @@ public class TestScript9 {
                         customObjectsList.add(customObject);
                     }
                 }
-                isButtonDisabled  = driver.findElement(ParametersScript9.NEXTBUTTON).getAttribute("class").contains("disabled");
+                isButtonDisabled  = driver.findElement(ParametersReturnObjectsList.NEXTBUTTON).getAttribute("class").contains("disabled");
                 nextButton.click();
                 Thread.sleep(1000);
         }
 
         for (CustomObject customObject : customObjectsList) {
             System.out.println(customObject.getName() + ", " + customObject.getPosition() + ", " + customObject.getOffice());
-
         }
+
+        CustomObject firstPerson = customObjectsList.get(0);
+        String expectedText = firstPerson.getName() + ", " + firstPerson.getPosition() + ", " + firstPerson.getOffice();
+        String actualText = "A. Cox, Junior Technical Author, San Francisco";
+
+        Assert.assertEquals(actualText, expectedText);
     }
 }

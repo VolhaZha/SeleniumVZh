@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -13,25 +14,25 @@ public class TestAlert {
     public WebDriver driver;
     public ChromeOptions options;
 
-    @BeforeTest
+    @BeforeMethod
     public void launchBrowser () {
         options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
     @Test (priority = 1)
     public void testConfirmOk() throws InterruptedException {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-
         driver.get(ParametersAlert.URL);
 
-        WebElement clickMeAlert = driver.findElement(ParametersAlert.LINK_TO_CLICK_ME_CONFIRM);
+        WebElement clickMeAlert = driver.findElement(ParametersAlert.BUTTON_CLICK_ME_CONFIRM);
         clickMeAlert.click();
 
-        String alertText = driver.switchTo().alert().getText();
-        System.out.println(alertText);
+        String expectedAlertText = "Press a button!";
+        String actualAlertText = driver.switchTo().alert().getText();
+        Assert.assertEquals(expectedAlertText, actualAlertText);
 
         Thread.sleep(5000);
 
@@ -40,16 +41,14 @@ public class TestAlert {
 
     @Test (priority = 2)
     public void testConfirmCancel() throws InterruptedException {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-
         driver.get(ParametersAlert.URL);
 
-        WebElement clickMeAlert = driver.findElement(ParametersAlert.LINK_TO_CLICK_ME_CONFIRM);
+        WebElement clickMeAlert = driver.findElement(ParametersAlert.BUTTON_CLICK_ME_CONFIRM);
         clickMeAlert.click();
 
-        String alertText = driver.switchTo().alert().getText();
-        System.out.println(alertText);
+        String expectedAlertText = "Press a button!";
+        String actualAlertText = driver.switchTo().alert().getText();
+        Assert.assertEquals(expectedAlertText, actualAlertText);
 
         Thread.sleep(5000);
 
@@ -58,16 +57,14 @@ public class TestAlert {
 
     @Test (priority = 4)
     public void testPrompt() throws InterruptedException {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-
         driver.get(ParametersAlert.URL);
 
-        WebElement clickForPromptAlert = driver.findElement(ParametersAlert.LINK_FOR_PROMPT);
+        WebElement clickForPromptAlert = driver.findElement(ParametersAlert.BUTTON_CLICK_FOR_PROMPT);
         clickForPromptAlert.click();
 
-        String alertText = driver.switchTo().alert().getText();
-        System.out.println(alertText);
+        String expectedAlertText = "Please enter your name";
+        String actualAlertText = driver.switchTo().alert().getText();
+        Assert.assertEquals(expectedAlertText, actualAlertText);
 
         Thread.sleep(5000);
 
@@ -77,23 +74,21 @@ public class TestAlert {
 
     @Test (priority = 3)
     public void testAlert() throws InterruptedException {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-
         driver.get(ParametersAlert.URL);
 
-        WebElement clickMeAlert = driver.findElement(ParametersAlert.LINK_TO_CLICK_ME_ALERT);
+        WebElement clickMeAlert = driver.findElement(ParametersAlert.BUTTON_CLICK_ME_ALERT);
         clickMeAlert.click();
 
-        String alertText = driver.switchTo().alert().getText();
-        System.out.println(alertText);
+        String expectedAlertText = "I am an alert box!";
+        String actualAlertText = driver.switchTo().alert().getText();
+        Assert.assertEquals(expectedAlertText, actualAlertText);
 
         Thread.sleep(5000);
 
         driver.switchTo().alert().accept();
     }
 
-//    @AfterTest
+//    @AfterMethod
 //    public void terminateBrowser(){
 //        driver.close();
 //    }

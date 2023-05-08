@@ -10,10 +10,10 @@ public class ParametersLogIn {
     public static final String TAG_NAME = null;
     public static final String CLASS_NAME = null;
 
-    public static final By ID_LINK_TO_SIGN_IN = By.id ("passp:sign-in");
-    public static final By INPUT_NAME = By.name("login");
-    public static final By PASS_XPATH = By.xpath("//*[@id=\"passp-field-passwd\"]");
-    public static final By CSS_SELECTOR_TO_SIGN_IN = By.cssSelector("#passp\\:sign-in");
-    public static final By EXPLICIT_WAIT_SELECTOR = By.xpath("//*[@id=\"js-apps-container\"]/div[2]/div[7]/div/div[1]/div/div/div[3]/div/div/a[1]/span[1]");
+    public static final By BUTTON_LOGIN_1 = By.id ("passp:sign-in");
+    public static final By FIELD_INPUT_NAME = By.name("login");
+    public static final By FIELD_INPUT_PASSWORD = By.xpath("//*[@id=\"passp-field-passwd\"]");
+    public static final By BUTTON_LOGIN_2 = By.cssSelector("#passp\\:sign-in");
+    public static final By EXPLICIT_WAIT_SELECTOR = By.xpath("//*[@id=\"__next\"]/div/header/div[4]/div/a[1]/div");
 }
 

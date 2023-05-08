@@ -6,9 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestMultiselect {
@@ -37,8 +40,12 @@ public class TestMultiselect {
 
         Thread.sleep(3000);
         List<WebElement> allSelected = select.getAllSelectedOptions();
+        List <String> actualOptionText = new ArrayList<String>();
+        List <String> expectedOptionText = Arrays.asList("Florida", "Texas", "Washington");
         for (WebElement webElement : allSelected) {
             System.out.println(webElement.getText());
+            actualOptionText.add(webElement.getText());
         }
+        Assert.assertEquals(actualOptionText, expectedOptionText, "Selected option doesn't match expected option");
     }
 }
