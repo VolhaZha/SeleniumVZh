@@ -88,8 +88,8 @@ public class TestAlert {
         driver.switchTo().alert().accept();
     }
 
-//    @AfterMethod
-//    public void terminateBrowser(){
-//        driver.close();
-//    }
+    @AfterMethod
+    public void terminateBrowser(){
+        driver.close();
+    }
 }
