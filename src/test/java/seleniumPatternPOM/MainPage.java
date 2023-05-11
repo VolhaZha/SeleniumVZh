@@ -9,9 +9,9 @@ public class MainPage {
 
     public static final String URL_LOGOUT = "https://passport.yandex.com/?ncrnd=56976";
 
-    public static final By ICON_AVATAR = By.xpath ("//*[@id=\"__next\"]/div/header/div[4]/div/a[1]/div/div[1]");
-    public static final By LINK_TO_SIGN_OUT = By.xpath ("//*[@id=\"root\"]/div/div/div/div[6]/div");
-    public static final By FRAME = By.xpath ("//*[@id=\"__next\"]/div/header/div[4]/div/div/div/div/iframe");
+    public static final By ICON_AVATAR = By.xpath ("//*[@class=\"Link UserID-Account\"]");
+    public static final By LINK_TO_SIGN_OUT = By.xpath ("//span[@class=\"Text\" and contains(text(), \"Sign out\")]");
+    public static final By FRAME = By.xpath ("//*[@class=\"UserWidget-Iframe\"]");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
