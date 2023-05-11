@@ -24,10 +24,10 @@ public class TestLogInLogOut {
 
     @Test(priority = 1)
     public void testLogIn() throws InterruptedException {
-        loginPage.enterUserName("ooozoz");
+        loginPage.enterUserName("ooozoz8");
         loginPage.clickNext();
 
-        passwordPage.enterPassword("1234567Oz!!!");
+        passwordPage.enterPassword("1234567Oz!");
         loginPage.clickNext();
 
         Thread.sleep(20000);
