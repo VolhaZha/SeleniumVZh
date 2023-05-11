@@ -49,7 +49,7 @@ public class TestLogInLogOut {
         loginPage.clickNext();
 
         passwordPage = factory.getPasswordPage();
-        passwordPage.enterPassword("1234567Oz!!!");
+        passwordPage.enterPassword("1234567Oz!!!!");
         passwordPage.clickNext();
 
         Thread.sleep(20000);
