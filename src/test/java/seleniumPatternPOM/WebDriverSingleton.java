@@ -14,7 +14,7 @@ public class WebDriverSingleton {
     private WebDriverSingleton() {
     }
 
-    public static void initialize() {
+    public static WebDriver initialize() {
         if (driver == null) {
             options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
@@ -26,6 +26,8 @@ public class WebDriverSingleton {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.manage().window().maximize();
+
+        return driver;
 
     }
 
