@@ -1,65 +1,70 @@
 package seleniumPatternFactory;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class TestLogInLogOut {
     private WebDriver driver;
     private LoginPage loginPage;
     private PasswordPage passwordPage;
     private MainPage mainPage;
-    private seleniumPatternFactory.Factory factory;
 
     @BeforeMethod
     public void launchBrowser() {
         driver = WebDriverSingleton.initialize();
-        WebDriverSingleton.driver.get(LoginPage.URL_LOGIN);
-
-        factory = new seleniumPatternFactory.Factory(driver);
+        WebDriverSingleton.driver.get(UrlConstants.URL_LOGIN);
 
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
         mainPage = new MainPage(driver);
     }
 
-    @Test(priority = 1)
+    @Test
     public void testLogIn() throws InterruptedException {
-        loginPage = factory.getLoginPage();
-        loginPage.enterUserName("ooozoz");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUserName(TestDataConstants.USER_NAME);
         loginPage.clickNext();
 
-        passwordPage = factory.getPasswordPage();
-        passwordPage.enterPassword("1234567Oz!!!!");
+        PasswordPage passwordPage = new PasswordPage(driver);
+        passwordPage.enterPassword(TestDataConstants.PASSWORD);
         passwordPage.clickNext();
 
-        Thread.sleep(20000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
+        wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals( actualTitle.contains("ID"), true);
+        Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
     }
 
-    @Test(priority = 2)
+    @Test
     public void testLogout() throws InterruptedException {
 
-        loginPage = factory.getLoginPage();
-        loginPage.enterUserName("ooozoz");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUserName(TestDataConstants.USER_NAME);
         loginPage.clickNext();
 
-        passwordPage = factory.getPasswordPage();
-        passwordPage.enterPassword("1234567Oz!!!!");
+        PasswordPage passwordPage = new PasswordPage(driver);
+        passwordPage.enterPassword(TestDataConstants.PASSWORD);
         passwordPage.clickNext();
 
-        Thread.sleep(20000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
+        wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
-        mainPage = factory.getMainPage();
+        MainPage mainPage = new MainPage(driver);
         mainPage.openMenu();
-        mainPage.clickQuit();
+
+        MenuPage menuPage = new MenuPage(driver);
+        menuPage.clickQuit();
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals( actualTitle.contains("Authorization"), true);
+        Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGOUT), true);
     }
 
     @AfterMethod

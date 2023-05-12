@@ -3,9 +3,8 @@ package seleniumPatternFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class PasswordPage {
+public class PasswordPage extends  BasePage{
     private WebDriver driver;
 
     @FindBy(css = "#passp\\:sign-in")
@@ -15,12 +14,12 @@ public class PasswordPage {
     WebElement fieldInputPassword;
 
     public PasswordPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
-    public void enterPassword(String password) throws InterruptedException {
+    public PasswordPage enterPassword(String password) throws InterruptedException {
         fieldInputPassword.sendKeys(password);
-        Thread.sleep(1000);
+        Thread.sleep(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER);
+        return this;
     }
     public void clickNext() throws InterruptedException {
         buttonLogIn.click();
