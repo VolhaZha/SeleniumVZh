@@ -21,7 +21,8 @@ public class PasswordPage extends  BasePage{
         Thread.sleep(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER);
         return this;
     }
-    public void clickNext() throws InterruptedException {
+    public MainPage clickNext() {
         buttonLogIn.click();
+        return new MainPage(driver);
     }
 }

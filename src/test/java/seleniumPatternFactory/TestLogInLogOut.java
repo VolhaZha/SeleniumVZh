@@ -15,6 +15,7 @@ public class TestLogInLogOut {
     private LoginPage loginPage;
     private PasswordPage passwordPage;
     private MainPage mainPage;
+    private MenuPage menuPage;
 
     @BeforeMethod
     public void launchBrowser() {
@@ -24,15 +25,16 @@ public class TestLogInLogOut {
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
         mainPage = new MainPage(driver);
+        menuPage = new MenuPage(driver);
     }
 
     @Test
     public void testLogIn() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
+        try {
+
         loginPage.enterUserName(TestDataConstants.USER_NAME);
         loginPage.clickNext();
 
-        PasswordPage passwordPage = new PasswordPage(driver);
         passwordPage.enterPassword(TestDataConstants.PASSWORD);
         passwordPage.clickNext();
 
@@ -41,30 +43,35 @@ public class TestLogInLogOut {
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
         Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
+
+        } finally {
+            WebDriverSingleton.close();
+        }
     }
 
     @Test
     public void testLogout() throws InterruptedException {
+        try {
 
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterUserName(TestDataConstants.USER_NAME);
         loginPage.clickNext();
 
-        PasswordPage passwordPage = new PasswordPage(driver);
         passwordPage.enterPassword(TestDataConstants.PASSWORD);
         passwordPage.clickNext();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
         wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
-        MainPage mainPage = new MainPage(driver);
         mainPage.openMenu();
 
-        MenuPage menuPage = new MenuPage(driver);
         menuPage.clickQuit();
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
         Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGOUT), true);
+
+        } finally {
+            WebDriverSingleton.close();
+        }
     }
 
     @AfterMethod

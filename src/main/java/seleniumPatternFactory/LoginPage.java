@@ -15,10 +15,12 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void enterUserName(String username) throws InterruptedException {
+    public LoginPage enterUserName(String username) throws InterruptedException {
         fieldInputName.sendKeys(username);
+        return this;
     }
-    public void clickNext() throws InterruptedException {
+    public PasswordPage clickNext() {
         buttonLogIn.click();
+        return new PasswordPage(driver);
     }
 }
