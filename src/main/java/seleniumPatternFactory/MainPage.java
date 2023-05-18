@@ -17,14 +17,11 @@ public class MainPage extends  BasePage {
     @FindBy(css = "[aria-expanded='true']")
     WebElement areaExpanded;
 
-    @FindBy(css = "iframe.UserWidget-Iframe")
+    @FindBy(xpath = "//iframe[@class='UserWidget-Iframe']")
     WebElement frameElement;
 
     @FindBy (css = "div .Logout")
     WebElement linkToSignOut;
-
-    @FindBy(id = "passp:sign-in")
-    WebElement buttonLogIn;
 
     @FindBy(css = "div .Logout.ListItem_hovered")
     WebElement hover;
@@ -51,12 +48,6 @@ public class MainPage extends  BasePage {
         actions.moveToElement(element).build().perform();
     }
     public LoginPage clickQuit(){
-        Wait<WebDriver> waitFrame = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(TimeConstants.SECONDS_WAIT_FRAME))
-                .pollingEvery(Duration.ofMillis(TimeConstants.MILLIS_DURATION_FRAME))
-                .ignoring(NoSuchElementException.class);
-
-        waitFrame.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameElement));
 
         driver.switchTo().frame(frameElement);
 
@@ -69,14 +60,11 @@ public class MainPage extends  BasePage {
         wait.until(driver -> hover.isDisplayed());
 
         wait.until(driver -> ExpectedConditions.visibilityOf(linkToSignOut).apply(driver));
-
-        wait.until(ExpectedConditions.elementToBeClickable(linkToSignOut));
+        wait.until(driver -> ExpectedConditions.elementToBeClickable(linkToSignOut).apply(driver));
 
         linkToSignOut.click();
 
         driver.switchTo().defaultContent();
-
-        wait.until(driver -> ExpectedConditions.elementToBeClickable(buttonLogIn).apply(driver));
 
         return new LoginPage(driver);
 

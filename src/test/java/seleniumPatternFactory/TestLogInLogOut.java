@@ -64,7 +64,7 @@ public class TestLogInLogOut {
         mainPage.clickQuit();
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGOUT), true);
+        Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGOUT), true, "Log out failed!");
 
         } finally {
             WebDriverSingleton.close();
