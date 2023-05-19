@@ -7,8 +7,8 @@
         <parameter name="carPrice" value="10"/>
         <parameter name="carWeight" value="50"/>
         <classes>
-            <class name = "testNG.TestCartParams" />
-            <class name = "testNG.TestRealItem" />
+            <class name = "com.coherentsolutions.training.aqa.java.zhavrid.testNG.TestCartParams" />
+            <class name = "com.coherentsolutions.training.aqa.java.zhavrid.testNG.TestRealItem" />
         </classes>
     </test>
 </suite>
