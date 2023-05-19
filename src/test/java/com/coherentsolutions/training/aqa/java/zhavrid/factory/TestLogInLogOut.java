@@ -6,6 +6,7 @@ import com.coherentsolutions.training.aqa.java.zhavrid.constants.UrlConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.LoginPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.MainPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.PasswordPage;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.Screen;
 import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class TestLogInLogOut {
@@ -22,6 +24,8 @@ public class TestLogInLogOut {
     private LoginPage loginPage;
     private PasswordPage passwordPage;
     private MainPage mainPage;
+
+    private Screen screen;
 
     @BeforeMethod
     public void launchBrowser() {
@@ -31,6 +35,7 @@ public class TestLogInLogOut {
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
         mainPage = new MainPage(driver);
+        screen = new Screen();
     }
 
     @Test
@@ -44,6 +49,8 @@ public class TestLogInLogOut {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
         wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
+
+        screen.takeScreen();
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
         Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
