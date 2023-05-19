@@ -35,7 +35,6 @@ public class TestLogInLogOut {
 
     @Test
     public void testLogIn() throws InterruptedException {
-        try {
 
         loginPage.enterUserName(TestDataConstants.USER_NAME);
         loginPage.clickNext();
@@ -49,14 +48,10 @@ public class TestLogInLogOut {
         String actualTitle = WebDriverSingleton.driver.getTitle();
         Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
 
-        } finally {
-            WebDriverSingleton.close();
-        }
     }
 
     @Test
     public void testLogout() throws InterruptedException {
-        try {
 
         loginPage.enterUserName(TestDataConstants.USER_NAME);
         loginPage.clickNext();
@@ -73,9 +68,6 @@ public class TestLogInLogOut {
         String actualTitle = WebDriverSingleton.driver.getTitle();
         Assert.assertEquals(actualTitle, TestDataConstants.INFO_AFTER_LOGOUT, "Log out failed!");
 
-        } finally {
-            WebDriverSingleton.close();
-        }
     }
 
     @AfterMethod
