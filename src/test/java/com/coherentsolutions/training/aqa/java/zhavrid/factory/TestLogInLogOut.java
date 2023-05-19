@@ -34,7 +34,7 @@ public class TestLogInLogOut {
     }
 
     @Test
-    public void testLogIn() throws InterruptedException {
+    public void testLogIn() {
 
         loginPage.enterUserName(TestDataConstants.USER_NAME);
         loginPage.clickNext();
@@ -51,7 +51,7 @@ public class TestLogInLogOut {
     }
 
     @Test
-    public void testLogout() throws InterruptedException {
+    public void testLogout() {
 
         loginPage.enterUserName(TestDataConstants.USER_NAME);
         loginPage.clickNext();

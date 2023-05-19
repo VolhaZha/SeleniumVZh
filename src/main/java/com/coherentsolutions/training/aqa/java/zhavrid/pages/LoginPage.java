@@ -15,7 +15,7 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public LoginPage enterUserName(String username) throws InterruptedException {
+    public LoginPage enterUserName(String username) {
         fieldInputName.sendKeys(username);
         return this;
     }
