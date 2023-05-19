@@ -6,6 +6,7 @@ import com.coherentsolutions.training.aqa.java.zhavrid.constants.UrlConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.LoginPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.MainPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.PasswordPage;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.Screen;
 import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class TestLogInLogOut {
