@@ -1,4 +1,4 @@
-package jUnit;
+package com.coherentsolutions.training.aqa.java.zhavrid.jUnit;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

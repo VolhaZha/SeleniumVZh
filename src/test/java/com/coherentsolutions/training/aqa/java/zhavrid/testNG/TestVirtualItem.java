@@ -1,4 +1,4 @@
-package testNG;
+package com.coherentsolutions.training.aqa.java.zhavrid.testNG;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

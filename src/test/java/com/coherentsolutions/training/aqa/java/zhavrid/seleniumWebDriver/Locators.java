@@ -1,4 +1,4 @@
-package seleniumWebDriver;
+package com.coherentsolutions.training.aqa.java.zhavrid.seleniumWebDriver;
 
 public class Locators {
 

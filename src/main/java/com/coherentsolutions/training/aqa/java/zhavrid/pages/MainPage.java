@@ -1,5 +1,6 @@
-package seleniumPatternFactory;
+package com.coherentsolutions.training.aqa.java.zhavrid.pages;
 
+import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -8,23 +9,23 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 
-public class MainPage extends  BasePage {
+public class MainPage extends BasePage {
     private WebDriver driver;
 
     @FindBy(css = "div[class='UserID-Avatar ']")
-    WebElement iconAvatar;
+    private WebElement iconAvatar;
 
     @FindBy(css = "[aria-expanded='true']")
-    WebElement areaExpanded;
+    private WebElement areaExpanded;
 
     @FindBy(xpath = "//iframe[@class='UserWidget-Iframe']")
-    WebElement frameElement;
+    private WebElement frameElement;
 
     @FindBy (css = "div .Logout")
-    WebElement linkToSignOut;
+    private WebElement linkToSignOut;
 
     @FindBy(css = "div .Logout.ListItem_hovered")
-    WebElement hover;
+    private WebElement hover;
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -43,9 +44,10 @@ public class MainPage extends  BasePage {
         return this;
     }
 
-    public void hoverOverElement(WebDriver driver, WebElement element) {
+    public MainPage hoverOverElement(WebDriver driver, WebElement element) {
         Actions actions = new Actions(driver);
         actions.moveToElement(element).build().perform();
+        return this;
     }
     public LoginPage clickQuit(){
 
@@ -60,7 +62,6 @@ public class MainPage extends  BasePage {
         wait.until(driver -> hover.isDisplayed());
 
         wait.until(driver -> ExpectedConditions.visibilityOf(linkToSignOut).apply(driver));
-        wait.until(driver -> ExpectedConditions.elementToBeClickable(linkToSignOut).apply(driver));
 
         linkToSignOut.click();
 

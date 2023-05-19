@@ -1,23 +1,21 @@
-package testNG;
+package com.coherentsolutions.training.aqa.java.zhavrid.testNG;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import shop.Cart;
 import shop.RealItem;
 
-public class TestCartParams {
+public class TestCart {
     private Cart cart;
     private RealItem car;
     @BeforeMethod
-    @Parameters({"cartName", "carName", "carPrice", "carWeight"})
-    public void setParams(String cartName, String carName, double carPrice, double carWeight) {
-        cart = new Cart(cartName);
+    public void setParams() {
+        cart = new Cart("TestCart");
         car = new RealItem();
-        car.setName(carName);
-        car.setPrice(carPrice);
-        car.setWeight(carWeight);
+        car.setName("Audi");
+        car.setPrice(10);
+        car.setWeight(50);
     }
 
     @Test (priority = 1)

@@ -1,5 +1,12 @@
-package seleniumPatternFactory;
+package com.coherentsolutions.training.aqa.java.zhavrid.factory;
 
+import com.coherentsolutions.training.aqa.java.zhavrid.constants.TestDataConstants;
+import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
+import com.coherentsolutions.training.aqa.java.zhavrid.constants.UrlConstants;
+import com.coherentsolutions.training.aqa.java.zhavrid.pages.LoginPage;
+import com.coherentsolutions.training.aqa.java.zhavrid.pages.MainPage;
+import com.coherentsolutions.training.aqa.java.zhavrid.pages.PasswordPage;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -64,7 +71,7 @@ public class TestLogInLogOut {
         mainPage.clickQuit();
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGOUT), true, "Log out failed!");
+        Assert.assertEquals(actualTitle, TestDataConstants.INFO_AFTER_LOGOUT, "Log out failed!");
 
         } finally {
             WebDriverSingleton.close();
@@ -73,6 +80,11 @@ public class TestLogInLogOut {
 
     @AfterMethod
     public void close() {
-        WebDriverSingleton.close();
+        try {
+            WebDriverSingleton.close();
+        }
+        finally {
+            System.out.println("Close() method completed!");
+        }
     }
 }

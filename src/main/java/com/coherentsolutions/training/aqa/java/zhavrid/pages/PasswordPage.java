@@ -1,17 +1,18 @@
-package seleniumPatternFactory;
+package com.coherentsolutions.training.aqa.java.zhavrid.pages;
 
+import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PasswordPage extends  BasePage{
+public class PasswordPage extends BasePage {
     private WebDriver driver;
 
     @FindBy(css = "#passp\\:sign-in")
-    WebElement buttonLogIn;
+    private WebElement buttonLogIn;
 
     @FindBy (xpath = "//*[@id=\"passp-field-passwd\"]")
-    WebElement fieldInputPassword;
+    private WebElement fieldInputPassword;
 
     public PasswordPage(WebDriver driver) {
         super(driver);

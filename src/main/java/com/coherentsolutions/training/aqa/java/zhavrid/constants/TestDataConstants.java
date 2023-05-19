@@ -1,4 +1,4 @@
-package seleniumPatternFactory;
+package com.coherentsolutions.training.aqa.java.zhavrid.constants;
 
 public class TestDataConstants {
     public static final String USER_NAME = "ooozoz9";

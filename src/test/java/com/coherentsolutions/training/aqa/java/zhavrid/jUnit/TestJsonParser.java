@@ -1,4 +1,4 @@
-package jUnit;
+package com.coherentsolutions.training.aqa.java.zhavrid.jUnit;
 
 import com.google.gson.JsonSyntaxException;
 import org.junit.jupiter.api.*;

@@ -1,4 +1,4 @@
-package testNG;
+package com.coherentsolutions.training.aqa.java.zhavrid.testNG;
 
 import com.google.gson.JsonSyntaxException;
 import org.testng.Assert;

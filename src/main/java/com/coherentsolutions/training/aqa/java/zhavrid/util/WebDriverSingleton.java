@@ -1,5 +1,6 @@
-package seleniumPatternFactory;
+package com.coherentsolutions.training.aqa.java.zhavrid.util;
 
+import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

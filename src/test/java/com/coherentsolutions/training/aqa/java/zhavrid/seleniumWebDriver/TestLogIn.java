@@ -1,4 +1,4 @@
-package seleniumWebDriver;
+package com.coherentsolutions.training.aqa.java.zhavrid.seleniumWebDriver;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

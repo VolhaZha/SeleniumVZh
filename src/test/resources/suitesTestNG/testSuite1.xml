@@ -3,8 +3,8 @@
 <suite name = "Cycle1">
     <test name = "Test1">
         <classes>
-            <class name = "testNG.TestJsonParser" />
-            <class name = "testNG.TestCart" />
+            <class name = "com.coherentsolutions.training.aqa.java.zhavrid.testNG.TestJsonParser" />
+            <class name = "com.coherentsolutions.training.aqa.java.zhavrid.testNG.TestCart" />
         </classes>
     </test>
 </suite>

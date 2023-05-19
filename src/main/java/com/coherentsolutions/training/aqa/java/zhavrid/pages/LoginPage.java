@@ -1,4 +1,4 @@
-package seleniumPatternFactory;
+package com.coherentsolutions.training.aqa.java.zhavrid.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,9 +7,9 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage extends BasePage {
     private WebDriver driver;
     @FindBy(id = "passp:sign-in")
-    WebElement buttonLogIn;
+    private WebElement buttonLogIn;
     @FindBy (name = "login")
-    WebElement fieldInputName;
+    private WebElement fieldInputName;
 
     public LoginPage(WebDriver driver) {
         super(driver);

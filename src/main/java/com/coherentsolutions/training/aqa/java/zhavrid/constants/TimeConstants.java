@@ -1,4 +1,4 @@
-package seleniumPatternFactory;
+package com.coherentsolutions.training.aqa.java.zhavrid.constants;
 
 public class TimeConstants {
     public static final int MILLIS_WAIT_AFTER_PASSWORD_ENTER = 1000;
