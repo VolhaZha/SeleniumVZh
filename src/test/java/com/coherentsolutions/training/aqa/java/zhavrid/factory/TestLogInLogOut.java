@@ -50,8 +50,6 @@ public class TestLogInLogOut {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
         wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
-        screen.takeScreen();
-
         String actualTitle = WebDriverSingleton.driver.getTitle();
         Assert.assertEquals( actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
 
