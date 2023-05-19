@@ -1,11 +1,8 @@
 package com.coherentsolutions.training.aqa.java.zhavrid.util;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import com.assertthat.selenium_shutterbug.core.Capture;
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
 import static com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton.driver;
@@ -16,12 +13,8 @@ public class Screen {
         Date currentdate = new Date ();
         String screenshotFileName = currentdate.toString().replace(" ", "-").replace(":", "-");
 
-        File screenFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        try {
-            FileUtils.copyFile(screenFile, new File (".//screenshot//"+screenshotFileName+".png"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Shutterbug.shootPage(driver, Capture.FULL, true).save(".//screenshot//"+screenshotFileName+".png");
+
         return this;
     }
 }
