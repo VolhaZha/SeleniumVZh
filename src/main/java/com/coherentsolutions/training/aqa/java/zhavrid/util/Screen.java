@@ -13,7 +13,7 @@ public class Screen {
         Date currentdate = new Date ();
         String screenshotFileName = currentdate.toString().replace(" ", "-").replace(":", "-");
 
-        Shutterbug.shootPage(driver, Capture.FULL, true).save(".//screenshot//"+screenshotFileName+".png");
+        Shutterbug.shootPage(driver, Capture.FULL, true).save(".//target//artifacts//screenshot//"+screenshotFileName+".png");
 
         return this;
     }

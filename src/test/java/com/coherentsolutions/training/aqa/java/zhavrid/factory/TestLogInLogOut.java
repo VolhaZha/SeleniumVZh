@@ -35,7 +35,6 @@ public class TestLogInLogOut {
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
         mainPage = new MainPage(driver);
-        screen = new Screen();
     }
 
     @Test
