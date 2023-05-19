@@ -25,8 +25,6 @@ public class TestLogInLogOut {
     private PasswordPage passwordPage;
     private MainPage mainPage;
 
-    private Screen screen;
-
     @BeforeMethod
     public void launchBrowser() {
         driver = WebDriverSingleton.initialize();
