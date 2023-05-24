@@ -1,13 +1,20 @@
 package com.coherentsolutions.training.aqa.java.zhavrid.util;
 
+import com.coherentsolutions.training.aqa.java.zhavrid.constants.TestDataConstants;
+import com.coherentsolutions.training.aqa.java.zhavrid.pages.BasePage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 
 import java.io.IOException;
 
-public class IEDownload {
+public class IEDownload extends BasePage {
+    public IEDownload(WebDriver driver) {
+        super(driver);
+    }
+
     public static void iEDownload() {
-        String downloadPath = "C:\\Downloads";
+        String downloadPath = TestDataConstants.DOWNLOAD_PATH;
 
         modifyRegistrySettings(downloadPath);
 
