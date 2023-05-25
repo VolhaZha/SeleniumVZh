@@ -12,33 +12,22 @@ import java.io.IOException;
 
 public class DownloadPage extends BasePage {
 
-    public String getContentType() {
-        return contentType;
-    }
-
-    public int getContentLength() {
-        return contentLength;
-    }
-
-    private String contentType;
-    private int contentLength;
-    @FindBy(css = ".example a:nth-of-type(14)")
-    private WebElement linkTODonwload;
+    @FindBy(css = ".example a:nth-of-type(10)")
+    private WebElement linkTODownload;
 
     public DownloadPage(WebDriver driver) {
         super(driver);
     }
 
-    public DownloadPage downloadPage() throws IOException {
-        String link = linkTODonwload.getAttribute("href");
+    public HttpResponse downloadPage() throws IOException {
 
+       linkTODownload.click();
+
+        String link = linkTODownload.getAttribute("href");
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpHead request = new HttpHead(link);
         HttpResponse response = httpClient.execute(request);
 
-        contentType = response.getFirstHeader("Content-Type").getValue();
-        contentLength = Integer.parseInt(response.getFirstHeader("Content-Length").getValue());
-
-        return new DownloadPage(driver);
+        return response;
     }
 }
