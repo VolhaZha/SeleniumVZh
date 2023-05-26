@@ -42,7 +42,7 @@ public class TestDownload {
         contentLength = Integer.parseInt(response.getFirstHeader((String) DownloadInfo.CONTENT_LENGTH.getHeader()).getValue());
 
         Assert.assertEquals(getContentType(), "application/octet-stream", "Content Type is false!");
-        Assert.assertNotEquals(getContentLength(), 0);
+        Assert.assertNotEquals(getContentLength(), 0, "Content length should not be 0!");
 
     }
 
