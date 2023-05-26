@@ -38,10 +38,10 @@ public class TestDownload {
     public void testDownload() throws Exception {
         HttpResponse response = downloadPage.downloadPage();
 
-        contentType = response.getFirstHeader((String) DownloadInfo.CONTENT_TYPE.getValue()).getValue();
-        contentLength = Integer.parseInt(response.getFirstHeader((String) DownloadInfo.CONTENT_LENGTH.getValue()).getValue());
+        contentType = response.getFirstHeader((String) DownloadInfo.CONTENT_TYPE.getHeader()).getValue();
+        contentLength = Integer.parseInt(response.getFirstHeader((String) DownloadInfo.CONTENT_LENGTH.getHeader()).getValue());
 
-        Assert.assertEquals(getContentType(), "application/octet-stream");
+        Assert.assertEquals(getContentType(), "application/octet-stream", "Content Type is false!");
         Assert.assertNotEquals(getContentLength(), 0);
 
     }

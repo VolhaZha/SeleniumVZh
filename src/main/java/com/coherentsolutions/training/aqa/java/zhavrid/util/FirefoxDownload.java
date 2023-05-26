@@ -1,13 +1,16 @@
 package com.coherentsolutions.training.aqa.java.zhavrid.util;
 
-import com.coherentsolutions.training.aqa.java.zhavrid.pages.BasePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
-public class FirefoxDownload extends BasePage implements DownloadManager {
+public class FirefoxDownload implements DownloadManager {
     private String downloadPath;
 
-    public FirefoxDownload(WebDriver driver) {
-        super(driver);
+    private WebDriver driver;
+
+    public FirefoxDownload (WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void prepareDownload() {

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class DownloadPage extends BasePage {
 
-    @FindBy(css = ".example a:nth-of-type(10)")
+    @FindBy(css = ".example a:nth-of-type(3)")
     private WebElement linkTODownload;
 
     public DownloadPage(WebDriver driver) {

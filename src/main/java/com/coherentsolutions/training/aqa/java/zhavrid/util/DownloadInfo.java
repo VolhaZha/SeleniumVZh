@@ -4,13 +4,15 @@ public enum DownloadInfo {
     CONTENT_TYPE("Content-Type"),
     CONTENT_LENGTH("Content-Length");
 
-    private final Object value;
+    private final String header;
 
-    DownloadInfo(Object value) {
-        this.value = value;
+    DownloadInfo(String header) {
+        this.header = header;
     }
 
-    public Object getValue() {
-        return value;
+    public String getHeader() {
+        return header;
     }
+
+
 }

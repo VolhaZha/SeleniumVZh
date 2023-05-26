@@ -10,8 +10,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 
-import java.io.IOException;
-
 public class DownloadManagerFactory {
     public static DownloadManager createDownloadManager(BrowserType browserType, WebDriver driver) {
 
@@ -54,35 +52,23 @@ public class DownloadManagerFactory {
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             case IE:
-                modifyRegistrySettings(TestDataConstants.DOWNLOAD_PATH);
                 InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+                ieOptions.setCapability("requireWindowFocus", true);
+                ieOptions.setCapability("ie.usePerProcessProxy", true);
                 ieOptions.setCapability("ie.ensureCleanSession", true);
-                ieOptions.setCapability("ie.download.directory", TestDataConstants.DOWNLOAD_PATH);
-                ieOptions.setCapability("ie.download.promptForDownload", false);
+                ieOptions.setCapability("ie.browserCommandLineSwitches", "-private");
+                ieOptions.setCapability("ie.forceCreateProcessApi", true);
+                ieOptions.setCapability("ie.fileUploadDialogTimeout", 0);
+                ieOptions.setCapability("ie.download.directory_upgrade", true);
+                ieOptions.setCapability("ie.download.prompt_for_download", false);
+                ieOptions.setCapability("ie.download.default_directory", TestDataConstants.DOWNLOAD_PATH);
+
                 System.setProperty("webdriver.ie.driver", "C:\\IEDriver\\IEDriverServer");
                 driver = new InternetExplorerDriver(ieOptions);
                 break;
         }
 
         return driver;
-    }
-
-    public static void modifyRegistrySettings(String downloadPath) {
-        try {
-            ProcessBuilder enableAutoDownloadProcess = new ProcessBuilder(
-                    "reg", "add", "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\Shell\\AttachmentExecute\\{0002DF01-0000-0000-C000-000000000046}",
-                    "/v", "SaveToDisk", "/t", "REG_SZ", "/d", "always", "/f"
-            );
-            enableAutoDownloadProcess.start();
-
-            ProcessBuilder setDownloadDirectoryProcess = new ProcessBuilder(
-                    "reg", "add", "HKEY_CURRENT_USER\\Software\\Microsoft\\Internet Explorer\\Main",
-                    "/v", "Default Download Directory", "/t", "REG_SZ", "/d", downloadPath, "/f"
-            );
-            setDownloadDirectoryProcess.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }
