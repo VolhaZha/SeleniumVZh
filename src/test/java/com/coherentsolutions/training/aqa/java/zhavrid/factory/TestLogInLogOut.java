@@ -46,17 +46,17 @@ public class TestLogInLogOut {
     @Severity(SeverityLevel.CRITICAL)
     public void testLogIn() {
 
-            loginPage.enterUserName(TestDataConstants.USER_NAME);
-            loginPage.clickNext();
+        loginPage.enterUserName(TestDataConstants.USER_NAME);
+        loginPage.clickNext();
 
-            passwordPage.enterPassword(TestDataConstants.PASSWORD);
-            passwordPage.clickNext();
+        passwordPage.enterPassword(TestDataConstants.PASSWORD);
+        passwordPage.clickNext();
 
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
-            wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
+        wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
-            String actualTitle = WebDriverSingleton.driver.getTitle();
-            Assert.assertEquals(actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
+        String actualTitle = WebDriverSingleton.driver.getTitle();
+        Assert.assertEquals(actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
 
     }
 
@@ -80,7 +80,7 @@ public class TestLogInLogOut {
         mainPage.clickQuit();
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals("actualTitle", TestDataConstants.INFO_AFTER_LOGOUT, "Log out failed!");
+        Assert.assertEquals(actualTitle, TestDataConstants.INFO_AFTER_LOGOUT, "Log out failed!");
 
     }
 
