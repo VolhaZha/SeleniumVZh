@@ -1,8 +1,10 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
 <suite name = "TakeScreenOnFail">
 <listeners>
     <listener class-name="com.coherentsolutions.training.aqa.java.zhavrid.util.ScreenListener"></listener>
+    <listener class-name="com.coherentsolutions.training.aqa.java.zhavrid.util.AllureListener"></listener>
 </listeners>
     <test name = "TestLogInLogOut">
         <classes>

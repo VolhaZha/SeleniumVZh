@@ -38,4 +38,8 @@ public class WebDriverSingleton {
             driver = null;
         }
     }
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
 }
