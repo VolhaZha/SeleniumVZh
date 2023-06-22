@@ -3,10 +3,12 @@ package com.coherentsolutions.training.aqa.java.zhavrid.util;
 import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.URL;
 import java.time.Duration;
+import java.net.MalformedURLException;
 
 public class WebDriverSingleton {
     public static WebDriver driver = null;
@@ -20,7 +22,12 @@ public class WebDriverSingleton {
             options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            driver = new ChromeDriver(options);
+           // driver = new ChromeDriver(options);
+            try {
+                driver = new RemoteWebDriver(new URL("http://192.168.0.192:4444"), options);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         driver.manage().deleteAllCookies();
