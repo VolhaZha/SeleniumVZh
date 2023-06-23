@@ -13,7 +13,7 @@ public class PropertiesFileReader {
     private PropertiesFileReader() {
     }
 
-    public static Properties getProperties() {
+    public static synchronized Properties getProperties() {
         if (prop == null) {
             try (InputStream input = new FileInputStream(PROPERTIES_PATH)) {
                 prop = new Properties();

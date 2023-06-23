@@ -35,7 +35,7 @@ public class TestLogInLogOut {
     private String password;
 
     @BeforeMethod
-    public void launchBrowser() throws IOException {
+    public void launchBrowser() {
         driver = WebDriverSingleton.initialize();
         String url = PropertiesFileReader.getProperty(PropertyKey.URLLOGIN);
         WebDriverSingleton.driver.get(url);
