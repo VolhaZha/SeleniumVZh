@@ -8,7 +8,7 @@ import java.util.Properties;
 public class PropertiesFileReader {
 
     private static Properties prop;
-    private static final String PROPERTIES_PATH = "C:\\Work\\Education\\Selenium\\UnitTesting-master\\src\\main\\resources\\testdata.properties";
+    private static final String PROPERTIES_PATH = "src/main/resources/testdata.properties";
 
     private PropertiesFileReader() {
     }

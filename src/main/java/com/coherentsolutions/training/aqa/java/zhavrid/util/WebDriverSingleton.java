@@ -17,16 +17,20 @@ public class WebDriverSingleton {
     private WebDriverSingleton() {
     }
 
+    private static String url;
+
     public static WebDriver initialize() {
+        url = PropertiesFileReader.getProperty("Property.URLhub");
+
         if (driver == null) {
             options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
            // driver = new ChromeDriver(options);
             try {
-                String browser = PropertiesFileReader.getProperty("browser");
+                String browser = PropertiesFileReader.getProperty("Property.BROWSER");
                 if (browser.equalsIgnoreCase("chrome")) {
-                    driver = new RemoteWebDriver(new URL("http://192.168.0.192:4444"), options);
+                    driver = new RemoteWebDriver(new URL(url), options);
                 } else if (browser.equalsIgnoreCase("firefox")) {
                 }
             } catch (MalformedURLException e) {

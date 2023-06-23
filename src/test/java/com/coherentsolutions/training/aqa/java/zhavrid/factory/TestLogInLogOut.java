@@ -1,5 +1,6 @@
 package com.coherentsolutions.training.aqa.java.zhavrid.factory;
 
+import com.coherentsolutions.training.aqa.java.zhavrid.constants.TestDataConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.constants.UrlConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.LoginPage;
@@ -32,9 +33,6 @@ public class TestLogInLogOut {
 
     private String userName;
     private String password;
-    private String infoAfterLogin;
-    private String infoAfterLogout;
-
 
     @BeforeMethod
     public void launchBrowser() throws IOException {
@@ -45,10 +43,8 @@ public class TestLogInLogOut {
         passwordPage = new PasswordPage(driver);
         mainPage = new MainPage(driver);
 
-        userName = PropertiesFileReader.getProperty("user");
-        password = PropertiesFileReader.getProperty("password");
-        infoAfterLogin = PropertiesFileReader.getProperty("infoAfterLogin");
-        infoAfterLogout = PropertiesFileReader.getProperty("infoAfterLogout");
+        userName = PropertiesFileReader.getProperty("Property.USER");
+        password = PropertiesFileReader.getProperty("Property.PASSWORD");
     }
 
     @Test (testName = "TestLogInLogOut.testLogIn")
@@ -65,10 +61,10 @@ public class TestLogInLogOut {
         passwordPage.clickNext();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
-        wait.until(ExpectedConditions.titleContains(infoAfterLogin));
+        wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals(actualTitle.contains(infoAfterLogin), true);
+        Assert.assertEquals(actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
 
     }
 
@@ -86,13 +82,13 @@ public class TestLogInLogOut {
         passwordPage.clickNext();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
-        wait.until(ExpectedConditions.titleContains(infoAfterLogin));
+        wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
         mainPage.openMenu();
         mainPage.clickQuit();
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals(actualTitle, infoAfterLogout, "Log out failed!");
+        Assert.assertEquals(actualTitle, TestDataConstants.INFO_AFTER_LOGOUT, "Log out failed!");
 
     }
 
