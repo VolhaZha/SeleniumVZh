@@ -20,7 +20,7 @@ public class WebDriverSingleton {
     private static String url;
 
     public static WebDriver initialize() {
-        url = PropertiesFileReader.getProperty("Property.URLhub");
+        url = PropertiesFileReader.getProperty(PropertyKey.URLHUB);
 
         if (driver == null) {
             options = new ChromeOptions();
@@ -28,7 +28,7 @@ public class WebDriverSingleton {
             options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
            // driver = new ChromeDriver(options);
             try {
-                String browser = PropertiesFileReader.getProperty("Property.BROWSER");
+                String browser = PropertiesFileReader.getProperty(PropertyKey.BROWSER);
                 if (browser.equalsIgnoreCase("chrome")) {
                     driver = new RemoteWebDriver(new URL(url), options);
                 } else if (browser.equalsIgnoreCase("firefox")) {

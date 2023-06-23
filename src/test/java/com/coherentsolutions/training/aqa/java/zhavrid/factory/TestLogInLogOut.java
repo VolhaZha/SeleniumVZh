@@ -2,12 +2,12 @@ package com.coherentsolutions.training.aqa.java.zhavrid.factory;
 
 import com.coherentsolutions.training.aqa.java.zhavrid.constants.TestDataConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
-import com.coherentsolutions.training.aqa.java.zhavrid.constants.UrlConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.LoginPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.MainPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.PasswordPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.util.AllureListener;
 import com.coherentsolutions.training.aqa.java.zhavrid.util.PropertiesFileReader;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.PropertyKey;
 import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
@@ -37,14 +37,15 @@ public class TestLogInLogOut {
     @BeforeMethod
     public void launchBrowser() throws IOException {
         driver = WebDriverSingleton.initialize();
-        WebDriverSingleton.driver.get(UrlConstants.URL_LOGIN);
+        String url = PropertiesFileReader.getProperty(PropertyKey.URLLOGIN);
+        WebDriverSingleton.driver.get(url);
 
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
         mainPage = new MainPage(driver);
 
-        userName = PropertiesFileReader.getProperty("Property.USER");
-        password = PropertiesFileReader.getProperty("Property.PASSWORD");
+        userName = PropertiesFileReader.getProperty(PropertyKey.USER);
+        password = PropertiesFileReader.getProperty(PropertyKey.PASSWORD);
     }
 
     @Test (testName = "TestLogInLogOut.testLogIn")

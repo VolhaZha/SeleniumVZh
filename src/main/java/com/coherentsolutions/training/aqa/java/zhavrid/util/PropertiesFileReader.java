@@ -25,8 +25,8 @@ public class PropertiesFileReader {
         return prop;
     }
 
-    public static String getProperty(String key) {
-        return getProperties().getProperty(key);
+    public static String getProperty(PropertyKey key) {
+        return getProperties().getProperty(key.getKey());
     }
 
 }
