@@ -19,7 +19,8 @@ public class PropertiesFileReader {
                 prop = new Properties();
                 prop.load(input);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                String errorMessage = String.format("Cannot read property file: %s", PROPERTIES_PATH);
+                throw new RuntimeException(errorMessage, ex);
             }
         }
         return prop;
