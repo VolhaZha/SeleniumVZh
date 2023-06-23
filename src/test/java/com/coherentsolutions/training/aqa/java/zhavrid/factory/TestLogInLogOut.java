@@ -1,12 +1,12 @@
 package com.coherentsolutions.training.aqa.java.zhavrid.factory;
 
-import com.coherentsolutions.training.aqa.java.zhavrid.constants.TestDataConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.constants.UrlConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.LoginPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.MainPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.PasswordPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.util.AllureListener;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.PropertiesFileReader;
 import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 
 @Listeners({ AllureListener.class })
@@ -29,14 +30,25 @@ public class TestLogInLogOut {
 
     private String browserInfo;
 
+    private String userName;
+    private String password;
+    private String infoAfterLogin;
+    private String infoAfterLogout;
+
+
     @BeforeMethod
-    public void launchBrowser() {
+    public void launchBrowser() throws IOException {
         driver = WebDriverSingleton.initialize();
         WebDriverSingleton.driver.get(UrlConstants.URL_LOGIN);
 
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
         mainPage = new MainPage(driver);
+
+        userName = PropertiesFileReader.getProperty("user");
+        password = PropertiesFileReader.getProperty("password");
+        infoAfterLogin = PropertiesFileReader.getProperty("infoAfterLogin");
+        infoAfterLogout = PropertiesFileReader.getProperty("infoAfterLogout");
     }
 
     @Test (testName = "TestLogInLogOut.testLogIn")
@@ -46,17 +58,17 @@ public class TestLogInLogOut {
     @Severity(SeverityLevel.CRITICAL)
     public void testLogIn() {
 
-        loginPage.enterUserName(TestDataConstants.USER_NAME);
+        loginPage.enterUserName(userName);
         loginPage.clickNext();
 
-        passwordPage.enterPassword(TestDataConstants.PASSWORD);
+        passwordPage.enterPassword(password);
         passwordPage.clickNext();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
-        wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
+        wait.until(ExpectedConditions.titleContains(infoAfterLogin));
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals(actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
+        Assert.assertEquals(actualTitle.contains(infoAfterLogin), true);
 
     }
 
@@ -67,20 +79,20 @@ public class TestLogInLogOut {
     @Severity(SeverityLevel.CRITICAL)
     public void testLogout() {
 
-        loginPage.enterUserName(TestDataConstants.USER_NAME);
+        loginPage.enterUserName(userName);
         loginPage.clickNext();
 
-        passwordPage.enterPassword(TestDataConstants.PASSWORD);
+        passwordPage.enterPassword(password);
         passwordPage.clickNext();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
-        wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
+        wait.until(ExpectedConditions.titleContains(infoAfterLogin));
 
         mainPage.openMenu();
         mainPage.clickQuit();
 
         String actualTitle = WebDriverSingleton.driver.getTitle();
-        Assert.assertEquals(actualTitle, TestDataConstants.INFO_AFTER_LOGOUT, "Log out failed!");
+        Assert.assertEquals(actualTitle, infoAfterLogout, "Log out failed!");
 
     }
 

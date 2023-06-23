@@ -24,7 +24,11 @@ public class WebDriverSingleton {
             options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
            // driver = new ChromeDriver(options);
             try {
-                driver = new RemoteWebDriver(new URL("http://192.168.0.192:4444"), options);
+                String browser = PropertiesFileReader.getProperty("browser");
+                if (browser.equalsIgnoreCase("chrome")) {
+                    driver = new RemoteWebDriver(new URL("http://192.168.0.192:4444"), options);
+                } else if (browser.equalsIgnoreCase("firefox")) {
+                }
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
