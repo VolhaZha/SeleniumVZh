@@ -1,6 +1,7 @@
 package com.coherentsolutions.training.aqa.java.zhavrid.base;
 
-import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingletonLocal;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingletonRemote;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -18,15 +19,15 @@ public class BaseTest {
 //            driver = WebDriverSingleton.getDriver();
 //        }
 
-        driver = WebDriverSingleton.openDriverInSauceLabs(browserName);
+        driver = WebDriverSingletonRemote.openDriverInSauceLabs(browserName);
 
-        WebDriverSingleton.setDriver(driver);
+        WebDriverSingletonLocal.setDriver(driver);
     }
 
     @AfterMethod
     public void close() {
         try {
-            WebDriverSingleton.close();
+            WebDriverSingletonLocal.close();
         }
         finally {
             System.out.println("Close() method completed!");

@@ -1,24 +1,17 @@
 package com.coherentsolutions.training.aqa.java.zhavrid.util;
 
-import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.IOException;
-import java.net.URL;
-import java.time.Duration;
 import java.net.MalformedURLException;
+import java.net.URL;
 
-public class WebDriverSingleton {
-    public static WebDriver driver;
-    public static ChromeOptions options;
+public class WebDriverSingletonRemote {
 
     private static final String USERNAME_SL_KEY = "username";
     private static final String ACCESSKEY_SL_KEY = "accessKey";
@@ -27,46 +20,10 @@ public class WebDriverSingleton {
     private static String accessKeySLVal;
     private static String urlSL;
 
-    private static WebDriverSingleton instanceDriver  = null;
+    private static WebDriverSingletonRemote instanceDriver  = null;
 
 
-    private WebDriverSingleton() {
-    }
-
-    public static WebDriver getDriver() {
-        if (driver == null) {
-            initialize();
-        }
-        return driver;
-    }
-
-    public static void setDriver(WebDriver driver) {
-        WebDriverSingleton.driver = driver;
-    }
-
-    public synchronized static WebDriverSingleton getDriverInstance() {
-        if (instanceDriver == null) {
-            instanceDriver = new WebDriverSingleton();
-        }
-        return instanceDriver;
-}
-
-
-    public static WebDriver initialize() {
-        if (driver == null) {
-            options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            driver = new ChromeDriver(options);
-        }
-
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TimeConstants.SECONDS_IMPLICIT_WAIT));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TimeConstants.SECONDS_PAGE_LOAD_TIMEOUT));
-        driver.manage().window().maximize();
-
-        return driver;
-
+    private WebDriverSingletonRemote() {
     }
 
     public static WebDriver openDriverInSauceLabs(String browserName) throws IOException {
@@ -109,12 +66,5 @@ public class WebDriverSingleton {
             throw new RuntimeException("Failed to create Sauce Labs driver instance");
         }
     }
-
-
-    public static void close() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
-        }
-    }
 }
+

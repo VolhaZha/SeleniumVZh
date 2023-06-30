@@ -5,7 +5,7 @@ import com.assertthat.selenium_shutterbug.core.Shutterbug;
 
 import java.util.Date;
 
-import static com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton.driver;
+import static com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingletonLocal.driver;
 
 public class Screen {
 
