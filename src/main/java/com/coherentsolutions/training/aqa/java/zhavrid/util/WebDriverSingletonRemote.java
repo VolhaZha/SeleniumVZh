@@ -13,7 +13,7 @@ import java.net.URL;
 
 public class WebDriverSingletonRemote {
 
-    public static WebDriver driver;
+    private static WebDriver driver;
 
     private static final String USERNAME_SL_KEY = "username";
     private static final String ACCESSKEY_SL_KEY = "accessKey";

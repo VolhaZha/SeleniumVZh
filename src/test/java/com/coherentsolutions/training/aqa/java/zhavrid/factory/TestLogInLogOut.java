@@ -38,7 +38,7 @@ public class TestLogInLogOut extends BaseTest {
         driver = WebDriverSingletonRemote.getDriver();
 
         String url = PropertiesFileReader.getProperty(PropertyKey.URLLOGIN);
-        WebDriverSingletonRemote.driver.get(url);
+        WebDriverSingletonRemote.getDriver().get(url);
 
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
@@ -56,7 +56,7 @@ public class TestLogInLogOut extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
         wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
-        String actualTitle = WebDriverSingletonRemote.driver.getTitle();
+        String actualTitle = WebDriverSingletonRemote.getDriver().getTitle();
         Assert.assertEquals(actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
 
     }
@@ -70,7 +70,7 @@ public class TestLogInLogOut extends BaseTest {
         driver = WebDriverSingletonRemote.getDriver();
 
         String url = PropertiesFileReader.getProperty(PropertyKey.URLLOGIN);
-        WebDriverSingletonRemote.driver.get(url);
+        WebDriverSingletonRemote.getDriver().get(url);
 
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
@@ -91,7 +91,7 @@ public class TestLogInLogOut extends BaseTest {
         mainPage.openMenu();
         mainPage.clickQuit();
 
-        String actualTitle = WebDriverSingletonRemote.driver.getTitle();
+        String actualTitle = WebDriverSingletonRemote.getDriver().getTitle();
         Assert.assertEquals(actualTitle, TestDataConstants.INFO_AFTER_LOGOUT, "Log out failed!");
 
     }

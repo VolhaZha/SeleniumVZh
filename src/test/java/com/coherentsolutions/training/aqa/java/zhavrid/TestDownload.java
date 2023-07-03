@@ -28,7 +28,7 @@ public class TestDownload {
     @BeforeMethod
     public void launchBrowser() {
         driver = WebDriverSingletonLocal.initialize();
-        WebDriverSingletonLocal.driver.get(UrlConstants.URL_DOWNLOAD);
+        WebDriverSingletonLocal.getDriver().get(UrlConstants.URL_DOWNLOAD);
 
         downloadPage = new DownloadPage(driver);
 

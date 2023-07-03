@@ -8,8 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.time.Duration;
 
 public class WebDriverSingletonLocal {
-    public static WebDriver driver;
-    public static ChromeOptions options;
+    private static WebDriver driver;
+    private static ChromeOptions options;
 
     private WebDriverSingletonLocal() {
     }
