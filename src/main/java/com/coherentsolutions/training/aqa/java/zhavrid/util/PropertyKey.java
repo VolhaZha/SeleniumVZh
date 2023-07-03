@@ -4,9 +4,11 @@ public enum PropertyKey {
     BROWSER("browser"),
     USER("user"),
     PASSWORD("password"),
-    URLHUB("URLhub"),
     URLLOGIN ("URLlogin"),
-    URLLOGOUT ("URLlogout");
+
+    USERNAMESL("userNameSL"),
+    ACCESSKEYSL("accessKeySL"),
+    URLSL("urlSL");
 
     private final String key;
 

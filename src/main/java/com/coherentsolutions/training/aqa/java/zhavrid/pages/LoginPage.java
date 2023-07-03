@@ -5,13 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    private WebDriver driver;
     @FindBy(id = "passp:sign-in")
     private WebElement buttonLogIn;
     @FindBy (name = "login")
     private WebElement fieldInputName;
 
     public LoginPage(WebDriver driver) {
+
         super(driver);
     }
 

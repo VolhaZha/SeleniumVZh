@@ -3,7 +3,7 @@ package com.coherentsolutions.training.aqa.java.zhavrid;
 import com.coherentsolutions.training.aqa.java.zhavrid.constants.UrlConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.DownloadPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.util.DownloadInfo;
-import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingleton;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingletonLocal;
 import org.apache.http.HttpResponse;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -27,8 +27,8 @@ public class TestDownload {
 
     @BeforeMethod
     public void launchBrowser() {
-        driver = WebDriverSingleton.initialize();
-        WebDriverSingleton.driver.get(UrlConstants.URL_DOWNLOAD);
+        driver = WebDriverSingletonLocal.initialize();
+        WebDriverSingletonLocal.getDriver().get(UrlConstants.URL_DOWNLOAD);
 
         downloadPage = new DownloadPage(driver);
 
@@ -49,7 +49,7 @@ public class TestDownload {
     @AfterMethod
     public void close() {
         try {
-            WebDriverSingleton.close();
+            WebDriverSingletonLocal.close();
         }
         finally {
             System.out.println("Close() method completed!");

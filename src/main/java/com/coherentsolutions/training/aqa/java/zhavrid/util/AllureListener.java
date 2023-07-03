@@ -47,7 +47,7 @@ public class AllureListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         Object testClass = iTestResult.getInstance();
-        WebDriver driver = WebDriverSingleton.getDriver();
+        WebDriver driver = WebDriverSingletonLocal.getDriver();
         if (driver instanceof WebDriver){
             System.out.println("Screen captured for: " + getTestMethodName(iTestResult));
             saveScreenshotPNG(driver);
