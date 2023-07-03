@@ -13,6 +13,8 @@ import java.net.URL;
 
 public class WebDriverSingletonRemote {
 
+    public static WebDriver driver;
+
     private static final String USERNAME_SL_KEY = "username";
     private static final String ACCESSKEY_SL_KEY = "accessKey";
 
@@ -24,6 +26,15 @@ public class WebDriverSingletonRemote {
 
 
     private WebDriverSingletonRemote() {
+    }
+
+    public static WebDriver getDriver() {
+        System.out.println("REMOTE!!!");
+        return driver;
+    }
+
+    public static void setDriver(WebDriver driver) {
+        WebDriverSingletonRemote.driver = driver;
     }
 
     public static WebDriver openDriverInSauceLabs(String browserName) throws IOException {

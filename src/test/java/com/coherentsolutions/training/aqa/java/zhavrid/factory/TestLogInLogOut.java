@@ -6,10 +6,7 @@ import com.coherentsolutions.training.aqa.java.zhavrid.constants.TimeConstants;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.LoginPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.MainPage;
 import com.coherentsolutions.training.aqa.java.zhavrid.pages.PasswordPage;
-import com.coherentsolutions.training.aqa.java.zhavrid.util.AllureListener;
-import com.coherentsolutions.training.aqa.java.zhavrid.util.PropertiesFileReader;
-import com.coherentsolutions.training.aqa.java.zhavrid.util.PropertyKey;
-import com.coherentsolutions.training.aqa.java.zhavrid.util.WebDriverSingletonLocal;
+import com.coherentsolutions.training.aqa.java.zhavrid.util.*;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,10 +35,10 @@ public class TestLogInLogOut extends BaseTest {
     @Description("Test the login functionality")
     @Severity(SeverityLevel.CRITICAL)
     public void testLogIn() {
-        driver = WebDriverSingletonLocal.getDriver();
+        driver = WebDriverSingletonRemote.getDriver();
 
         String url = PropertiesFileReader.getProperty(PropertyKey.URLLOGIN);
-        WebDriverSingletonLocal.driver.get(url);
+        WebDriverSingletonRemote.driver.get(url);
 
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
@@ -59,7 +56,7 @@ public class TestLogInLogOut extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeConstants.MILLIS_WAIT_AFTER_PASSWORD_ENTER_AND_CLICK));
         wait.until(ExpectedConditions.titleContains(TestDataConstants.INFO_AFTER_LOGIN));
 
-        String actualTitle = WebDriverSingletonLocal.driver.getTitle();
+        String actualTitle = WebDriverSingletonRemote.driver.getTitle();
         Assert.assertEquals(actualTitle.contains(TestDataConstants.INFO_AFTER_LOGIN), true);
 
     }
@@ -70,10 +67,10 @@ public class TestLogInLogOut extends BaseTest {
     @Description("Test the logout functionality")
     @Severity(SeverityLevel.CRITICAL)
     public void testLogout() {
-        driver = WebDriverSingletonLocal.getDriver();
+        driver = WebDriverSingletonRemote.getDriver();
 
         String url = PropertiesFileReader.getProperty(PropertyKey.URLLOGIN);
-        WebDriverSingletonLocal.driver.get(url);
+        WebDriverSingletonRemote.driver.get(url);
 
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
@@ -94,7 +91,7 @@ public class TestLogInLogOut extends BaseTest {
         mainPage.openMenu();
         mainPage.clickQuit();
 
-        String actualTitle = WebDriverSingletonLocal.driver.getTitle();
+        String actualTitle = WebDriverSingletonRemote.driver.getTitle();
         Assert.assertEquals(actualTitle, TestDataConstants.INFO_AFTER_LOGOUT, "Log out failed!");
 
     }

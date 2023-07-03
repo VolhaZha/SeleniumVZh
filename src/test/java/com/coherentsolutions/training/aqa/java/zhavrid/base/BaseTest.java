@@ -10,18 +10,17 @@ import java.io.IOException;
 public class BaseTest {
     private WebDriver driver;
 
-    @Parameters({"browser"})
+    @Parameters({"browser", "executionMode"})
     @BeforeMethod
-    public void launchBrowser(String browserName) throws IOException {
-//        if (browserName.equals("sauceLabs")) {
-//            driver = WebDriverSingleton.openDriverInSauceLabs(browserName);
-//        } else {
-//            driver = WebDriverSingleton.getDriver();
-//        }
-
-        driver = WebDriverSingletonRemote.openDriverInSauceLabs(browserName);
-
-        WebDriverSingletonLocal.setDriver(driver);
+    public void launchBrowser(String browserName, String executionMode) throws IOException {
+        if (executionMode.equals("remote")) {
+            driver = WebDriverSingletonRemote.openDriverInSauceLabs(browserName);
+            WebDriverSingletonRemote.setDriver(driver);
+            System.out.println(WebDriverSingletonRemote.getDriver().toString());
+        } else {
+            driver = WebDriverSingletonLocal.getDriver();
+        }
+        System.out.println(driver);
     }
 
     @AfterMethod

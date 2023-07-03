@@ -15,23 +15,18 @@ public class WebDriverSingletonLocal {
     }
 
     public static WebDriver getDriver() {
+        System.out.println("LOCAL!!!");
         if (driver == null) {
             initialize();
         }
         return driver;
     }
 
-    public static void setDriver(WebDriver driver) {
-        WebDriverSingletonLocal.driver = driver;
-    }
-
     public static WebDriver initialize() {
-        if (driver == null) {
-            options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            driver = new ChromeDriver(options);
-        }
+        options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        driver = new ChromeDriver(options);
 
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TimeConstants.SECONDS_IMPLICIT_WAIT));
